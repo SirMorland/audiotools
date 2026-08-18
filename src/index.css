@@ -1,11 +1,17 @@
 *,
 *::before,
 *::after {
-	box-sizing: border-box;
 	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
 }
 
 body {
+	height: 100%;
 	font-family:
 		system-ui,
 		-apple-system,
@@ -13,19 +19,24 @@ body {
 	line-height: 1.5;
 	color: #e4e4e7;
 	background: #09090b;
-	padding: 2rem;
+}
+
+#root {
+	display: grid;
+	grid-template-rows: 1fr max-content;
+	min-height: 100%;
 }
 
 main > h1 {
 	font-size: 1.75rem;
-	margin-bottom: 1rem;
+	margin: 1rem;
 }
 
 nav {
 	display: flex;
 	gap: 2px;
 	border-bottom: 1px solid #27272a;
-	margin-bottom: 1.5rem;
+	margin: 1rem;
 }
 
 nav button {
@@ -50,6 +61,10 @@ nav button.active {
 	border-bottom-color: #e4e4e7;
 }
 
+section {
+	margin: 1rem;
+}
+
 section h2 {
 	font-size: 1.25rem;
 	margin-bottom: 0.5rem;
@@ -62,4 +77,29 @@ section h3 {
 section img {
 	max-height: 120px;
 	display: block;
+}
+
+footer {
+	background-color: #eee;
+	position: sticky;
+	bottom: 0;
+}
+
+.github-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	color: #999;
+	text-decoration: none;
+	font-size: 0.875rem;
+	transition: color 0.15s;
+	padding: 0.5rem;
+}
+
+.github-badge:hover {
+	color: #333;
+}
+
+.github-badge svg {
+	flex-shrink: 0;
 }
