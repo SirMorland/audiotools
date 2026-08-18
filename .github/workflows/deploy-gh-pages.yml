@@ -1,0 +1,46 @@
+name: Deploy to gh-pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Capture main commit hash
+        run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> "$GITHUB_ENV"
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install and build
+        run: |
+          bun install --frozen-lockfile
+          bun run build
+
+      - name: Checkout gh-pages
+        run: |
+          git checkout gh-pages
+
+      - name: Move dist to repo root
+        run: |
+          rm -rf *.html *.css *.js *.png *.svg .vite node_modules assets
+          mv dist/* .
+          rmdir dist
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "Deploy $COMMIT_HASH"
+          git push origin gh-pages
