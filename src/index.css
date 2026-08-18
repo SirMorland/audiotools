@@ -1,0 +1,65 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+body {
+	font-family:
+		system-ui,
+		-apple-system,
+		sans-serif;
+	line-height: 1.5;
+	color: #e4e4e7;
+	background: #09090b;
+	padding: 2rem;
+}
+
+main > h1 {
+	font-size: 1.75rem;
+	margin-bottom: 1rem;
+}
+
+nav {
+	display: flex;
+	gap: 2px;
+	border-bottom: 1px solid #27272a;
+	margin-bottom: 1.5rem;
+}
+
+nav button {
+	background: transparent;
+	border: none;
+	border-bottom: 2px solid transparent;
+	color: #a1a1aa;
+	padding: 0.5rem 1rem;
+	font-size: 0.9375rem;
+	cursor: pointer;
+	transition:
+		color 0.15s,
+		border-color 0.15s;
+}
+
+nav button:hover {
+	color: #e4e4e7;
+}
+
+nav button.active {
+	color: #e4e4e7;
+	border-bottom-color: #e4e4e7;
+}
+
+section h2 {
+	font-size: 1.25rem;
+	margin-bottom: 0.5rem;
+}
+
+section h3 {
+	font-size: 1rem;
+}
+
+section img {
+	max-height: 120px;
+	display: block;
+}
