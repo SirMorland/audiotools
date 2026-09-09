@@ -111,11 +111,7 @@ function NormalizeTab() {
 			</FilePicker>
 
 			{results.length > 0 && (
-				<ResultsList
-					results={results}
-					onDownloadAll={reset}
-					onClear={reset}
-				/>
+				<ResultsList results={results} onDownloadAll={reset} onClear={reset} />
 			)}
 		</section>
 	);

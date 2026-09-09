@@ -213,9 +213,7 @@ interface TrackLoudness {
  * @param inputs - One or more MediaBunny Input instances (one per track)
  * @returns Loudness info per track and the overall gain factor (1 = no change needed)
  */
-export async function analyzeLoudness(
-	inputs: Input[],
-): Promise<{
+export async function analyzeLoudness(inputs: Input[]): Promise<{
 	perTrack: TrackLoudness[];
 	gain: number;
 	combinedDbfs: number;
@@ -245,7 +243,9 @@ export async function analyzeLoudness(
 		const audioTrack = audioTracks[0];
 		const sink = new AudioSampleSink(audioTrack);
 		const numChannels = await audioTrack.getNumberOfChannels();
-		const sampleRate = await input.getAudioTracks().then((t) => t[0]?.getSampleRate?.() ?? 44100);
+		const sampleRate = await input
+			.getAudioTracks()
+			.then((t) => t[0]?.getSampleRate?.() ?? 44100);
 
 		for await (const sample of sink.samples()) {
 			const data = readSample(sample);
